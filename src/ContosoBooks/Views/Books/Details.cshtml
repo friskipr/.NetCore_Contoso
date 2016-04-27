@@ -9,7 +9,13 @@
 <div>
     <h4>Book</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal">        
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Genre)
         </dt>
@@ -21,19 +27,19 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+        </dd>        
         <dt>
             @Html.DisplayNameFor(model => model.Year)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Year)
-        </dd>
+        </dd>        
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Author.FirstMidName) @Html.DisplayFor(model => model.Author.LastName)
+        </dd>        
     </dl>
 </div>
 <p>

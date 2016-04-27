@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ContosoBooks.Models
 {
     public class Book
-    {
-        [ScaffoldColumn(false)]
+    {        
         public int BookID { get; set; }
 
         [Required]
@@ -20,8 +20,9 @@ namespace ContosoBooks.Models
         public decimal Price { get; set; }
 
         public string Genre { get; set; }
-
-        [ScaffoldColumn(false)]
+                
+        [Required]
+        [Display(Name = "Author")]
         public int AuthorID { get; set; }
 
         public virtual Author Author { get; set; }

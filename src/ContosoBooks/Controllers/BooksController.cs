@@ -30,7 +30,7 @@ namespace ContosoBooks.Controllers
                 return HttpNotFound();
             }
 
-            Book book = _context.Book.Single(m => m.BookID == id);
+            Book book = _context.Book.Include(x => x.Author).Single(m => m.BookID == id);            
             if (book == null)
             {
                 return HttpNotFound();
@@ -41,8 +41,8 @@ namespace ContosoBooks.Controllers
 
         // GET: Books/Create
         public IActionResult Create()
-        {
-            ViewData["AuthorID"] = new SelectList(_context.Set<Author>(), "AuthorID", "Author");
+        {            
+            ViewData["Authors"] = new SelectList(_context.Set<Author>(), "AuthorID", "LastName");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace ContosoBooks.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewData["AuthorID"] = new SelectList(_context.Set<Author>(), "AuthorID", "Author", book.AuthorID);
+            ViewData["Authors"] = new SelectList(_context.Set<Author>(), "AuthorID", "LastName", book.AuthorID);
             return View(book);
         }
 
@@ -74,7 +74,7 @@ namespace ContosoBooks.Controllers
             {
                 return HttpNotFound();
             }
-            ViewData["AuthorID"] = new SelectList(_context.Set<Author>(), "AuthorID", "Author", book.AuthorID);
+            ViewData["Authors"] = new SelectList(_context.Set<Author>(), "AuthorID", "LastName");
             return View(book);
         }
 
@@ -89,7 +89,7 @@ namespace ContosoBooks.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewData["AuthorID"] = new SelectList(_context.Set<Author>(), "AuthorID", "Author", book.AuthorID);
+            ViewData["Authors"] = new SelectList(_context.Set<Author>(), "AuthorID", "LastName", book.AuthorID);
             return View(book);
         }
 
